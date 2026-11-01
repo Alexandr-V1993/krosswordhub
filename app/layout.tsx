@@ -5,18 +5,34 @@ import Metrika from "@/components/Metrika";
 import Ads from "@/components/Ads";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const FONTS = "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap";
+const FONTS =
+  "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "CrosswordHub — кроссворды онлайн", template: `%s | ${SITE_NAME}` },
-  description: "Русские кроссворды онлайн: кроссворд дня, сотни готовых сеток по темам, подсказки и личный прогресс.",
+  title: {
+    default: "CrosswordHub — кроссворды онлайн",
+    template: `%s | ${SITE_NAME}`,
+  },
+  description:
+    "Русские кроссворды онлайн: кроссворд дня, сотни готовых сеток по темам, подсказки и личный прогресс.",
   applicationName: SITE_NAME,
-  keywords: ["кроссворды онлайн", "кроссворд дня", "решать кроссворды", "русские кроссворды", "кроссворды бесплатно", "головоломки"],
+  keywords: [
+    "кроссворды онлайн",
+    "кроссворд дня",
+    "решать кроссворды",
+    "русские кроссворды",
+    "кроссворды бесплатно",
+    "головоломки",
+  ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   formatDetection: { telephone: false, email: false, address: false },
   robots: { index: true, follow: true },
+  verification: {
+    yandex: "f7b1538bb18e6feb",
+    google: "UidQxIPmn6mjeTT9Tl2B24FhcLHPE6niLEC6Qku6MNo",
+  },
 };
 
 export const viewport: Viewport = {
@@ -31,17 +47,27 @@ const jsonLd = {
   name: SITE_NAME,
   url: SITE_URL,
   inLanguage: "ru",
-  description: "Русские кроссворды онлайн: кроссворд дня и сотни сеток по темам.",
+  description:
+    "Русские кроссворды онлайн: кроссворд дня и сотни сеток по темам.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="stylesheet" href={FONTS} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         {/* Интерфейс живёт в layout, поэтому буквы в сетке не пропадают при переходах между страницами */}
@@ -49,7 +75,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
         <Metrika />
         <Ads />
-        <noscript><p style={{ padding: 24, textAlign: "center" }}>Для игры в кроссворды нужен включённый JavaScript.</p></noscript>
+        <noscript>
+          <p style={{ padding: 24, textAlign: "center" }}>
+            Для игры в кроссворды нужен включённый JavaScript.
+          </p>
+        </noscript>
       </body>
     </html>
   );
